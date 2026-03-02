@@ -1,0 +1,44 @@
+-- Seed a demo coach
+-- Note: This assumes you've created a user in Supabase Auth with email 'coach@demo.com'
+-- You'll need to manually create this user first, then update the UUID below
+
+-- After creating the user in Supabase Auth, get their UUID and update this:
+-- INSERT INTO public.profiles (id, email, full_name, role)
+-- VALUES (
+--   'YOUR_COACH_USER_UUID_HERE',
+--   'coach@demo.com',
+--   'Demo Coach',
+--   'coach'
+-- );
+
+-- Seed demo clients (update coach_id with actual UUID)
+-- INSERT INTO public.clients (id, coach_id, full_name, email, phone, notes)
+-- VALUES
+--   (
+--     '10000000-0000-0000-0000-000000000001',
+--     'YOUR_COACH_USER_UUID_HERE',
+--     'John Athlete',
+--     'john@example.com',
+--     '555-0101',
+--     'Focus on strength training. Prefers morning sessions.'
+--   ),
+--   (
+--     '10000000-0000-0000-0000-000000000002',
+--     'YOUR_COACH_USER_UUID_HERE',
+--     'Sarah Fighter',
+--     'sarah@example.com',
+--     '555-0102',
+--     'Martial arts training. Needs flexibility work.'
+--   ),
+--   (
+--     '10000000-0000-0000-0000-000000000003',
+--     'YOUR_COACH_USER_UUID_HERE',
+--     'Mike Trainer',
+--     'mike@example.com',
+--     '555-0103',
+--     'Competition prep. High intensity focus.'
+--   );
+
+-- Note: Run this seed file AFTER creating the coach user in Supabase Auth
+-- and updating the UUIDs above
+

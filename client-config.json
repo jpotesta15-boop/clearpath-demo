@@ -1,0 +1,13 @@
+{
+    "clientName":  "Demo Coach",
+    "features":  {
+                     "groupSessions":  true,
+                     "videoLibrary":  true
+                 },
+    "supabaseClientId":  "demo",
+    "businessName":  "Demo Fitness",
+    "brandColors":  {
+                        "primary":  "#0284c7",
+                        "secondary":  "#0369a1"
+                    }
+}

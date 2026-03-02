@@ -1,0 +1,45 @@
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import SidebarNav from '@/components/SidebarNav'
+
+const coachNavItems = [
+  { href: '/coach/dashboard', label: 'Dashboard' },
+  { href: '/coach/clients', label: 'Clients' },
+  { href: '/coach/schedule', label: 'Schedule' },
+  { href: '/coach/programs', label: 'Programs' },
+  { href: '/coach/videos', label: 'Videos' },
+  { href: '/coach/messages', label: 'Messages' },
+]
+
+export default async function CoachLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/login')
+  }
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (profile?.role !== 'coach') {
+    redirect('/client/dashboard')
+  }
+
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      <SidebarNav navItems={coachNavItems} />
+      <main className="flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {children}
+      </main>
+    </div>
+  )
+}
+
